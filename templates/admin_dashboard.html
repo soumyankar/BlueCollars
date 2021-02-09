@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block logout %}
+<li>
+	<a href="/logout">
+          <span class="glyphicon glyphicon-log-out"></span> <span style="color: red;">Logout</span>
+    </a>
+</li>
+{% endblock %}
+{% block container %}
+<h1>Dashboard</h1>
+<p>Displaying all job applicants</p>
+<div class="line"></div>
+<h2>Applicants</h2>
+<br>
+<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Currently displaying {{ applicants_count }} applications.</div>
+<br>
+{% if applicants|length < 1 %}
+<p>No applicants in database :(</p>
+{% else %}
+<br>
+{% for applicant in applicants %}
+<br>
+<div class="row">
+	<div class="col-sm-4">
+		<a href="#"><img id="applicant-picture" src="https://via.placeholder.com/250" style="max-width: 250px; max-height: 250px"></a>
+	</div>
+	<div class="col-sm-8">
+		<p id="applicant-id"><b>ID </b>- {{ applicant.id }}</p>
+		<p id="applicant-name"><b>Name </b>- {{ applicant.name }}</p>
+		<p id="applicant-address"><b>Address </b>- {{ applicant.address }}</p>
+		<p id="applicant-phone"><b>Phone Number </b>- {{ applicant.phone }}</p>
+		<p id="applicant-gender"><b>Gender </b>- {{ applicant.gender }}</p>
+		<p id="applicant-date-created"><b>Date Created </b>- {{ applicant.date_created }}</p>
+		<button type="button" class="btn btn-danger" value="Delete!"><a href="#">Delete</a></button>
+		<button type="button" class="btn btn-success" value="Accept!"><a href="#">Accept</a></button>
+	</div>
+</div>
+<br>
+<br>
+{% endfor %}
+{% endif %}
+{% endblock %}
