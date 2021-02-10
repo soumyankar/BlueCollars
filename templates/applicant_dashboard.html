@@ -4,32 +4,23 @@
 {% endblock %}
 {% block logout %}
 <li>
-	<a href="/logout">
+	<a href="/applicantlogout">
           <span class="glyphicon glyphicon-log-out"></span> <span style="color: red;">Logout</span>
     </a>
 </li>
 {% endblock %}
 {% block nav%}
 <li>
-    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/applicant/dashboard">Dashboard</a>
 </li>
 <li>
-    <a href="/admin/addjob">Add Jobs</a>
+    <a href="/jobs">Find Jobs</a>
 </li>
 {% endblock %}
 {% block container %}
 <h1>Dashboard</h1>
-<p>Displaying all job applicants</p>
+<p>Applicant info</p>
 <div class="line"></div>
-<h2>Applicants</h2>
-<br>
-<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Currently displaying {{ applicants_count }} applications.</div>
-<br>
-{% if applicants|length < 1 %}
-<p>No applicants in database :(</p>
-{% else %}
-<br>
-{% for applicant in applicants %}
 <br>
 <div class="row">
 	<div class="col-sm-4">
@@ -42,12 +33,6 @@
 		<p id="applicant-phone"><b>Phone Number </b>- {{ applicant.phone }}</p>
 		<p id="applicant-gender"><b>Gender </b>- {{ applicant.gender }}</p>
 		<p id="applicant-date-created"><b>Date Created </b>- {{ applicant.date_created }}</p>
-		<button type="button" class="btn btn-danger" value="Delete!"><a href="#">Delete</a></button>
-		<button type="button" class="btn btn-success" value="Accept!"><a href="#">Accept</a></button>
 	</div>
 </div>
-<br>
-<br>
-{% endfor %}
-{% endif %}
 {% endblock %}

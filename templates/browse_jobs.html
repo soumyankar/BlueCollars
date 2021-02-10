@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block logout %}
+<li>
+	<a href="/applicantlogout">
+          <span class="glyphicon glyphicon-log-out"></span> <span style="color: red;">Logout</span>
+    </a>
+</li>
+{% endblock %}
+{% block nav%}
+<li>
+    <a href="/applicant/dashboard">Dashboard</a>
+</li>
+<li>
+    <a href="/jobs">Find Jobs</a>
+</li>
+{% endblock %}
+
+{% block container %}
+<h1>Find Jobs </h1>
+<p>Displaying all jobs under the <b><u>{{ category }}</u></b> Category.</p>
+<div class="line"></div>
+{% if jobs|length < 1 %}
+<p>No jobs currently available in this category :(</p>
+{% else %}
+{% for job in jobs %}
+<div class="row">
+	<div class="col-sm-12">
+		<div class="row">
+			
+			<h2>{{ job.post }}
+			<button  class="btn btn-success" value="1" style="float: right;">Apply!</button>
+		</h2>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-4">
+				<img src="{{ url_for('static',filename='img/organization.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.organization }}
+				<br>
+				<p>Organization</p>
+			</div>
+			<div class="col-sm-4">
+				<img src="{{ url_for('static',filename='img/location.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.location }}
+				<br>
+				<p>Location</p>
+			</div>
+			<div class="col-sm-4" style="display: inline-block;">
+				<img src="{{ url_for('static',filename='img/rupee-indian.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.salary }}
+				<br>
+				<p>Salary</p>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<p>{{ job.description }}</p>
+		</div>
+	</div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock%}

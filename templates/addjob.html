@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block nav%}
+<li>
+    <a href="/admin/dashboard">Dashboard</a>
+</li>
+<li>
+    <a href="/admin/addjob">Add Jobs</a>
+</li>
+{% endblock %}
+
+{% block container %}
+<h1>Add Jobs </h1>
+<p>Add Jobs here for applicants to apply to. All jobs added here will be reflected on the applicant job search page.</p>
+<form method="POST" action="/admin/addjob" onsubmit="return (validate())">
+	<label>Job Post</label>
+	<br>
+	<input type="text" name="post">
+	<br><br>
+	<label>Organization</label>
+	<br>
+	<input type="text" name="organization">
+	<br><br>
+	<label>Salary</label>
+	<br>
+	<input type="number" name="salary">
+	<br><br>
+	<label>Job Description</label>
+	<br>
+	<input type="text" name="description">
+	<br><br>
+	<label>Location</label>
+	<br>
+	<input type="text" name="location">
+	<label>Job Category -- </label>
+	<select name="category">
+		<option value="-1" selected disabled hidden></option>
+		<option value="Cooks">Cooks</option>
+		<option value="Sales">Sales</option>
+		<option value="Deliveryman">Deliveryman</option>
+		<option value="Driver">Driver</option>
+		<option value="Accounting">Accounting</option>
+		<option value="Tailoring">Tailoring</option>
+		<option value="Construction">Construction</option>
+		<option value="Mining">Mining</option>
+		<option value="Attendant">Attendant</option>
+	</select>
+	<br><br>
+	<input type="submit" name="submit" value="Go!" onclick="return (validate());">
+</form>
+{% endblock%}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Job Finder | Heroku Hosting</title>
+	<!-- My Scripts. -->
+	<!-- jQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Styling Components -->
+	<!-- Bootstrap CSS CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Our Custom CSS -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+</head>
+<body>
+
+	<div class="wrapper">
+		<!-- Sidebar Holder -->
+		<nav id="sidebar">
+			<div id="dismiss">
+				<i class="glyphicon glyphicon-arrow-left"></i>
+			</div>
+
+			<div class="sidebar-header">
+				<h3><a href="/">Job Finder</a></h3>
+			</div>
+
+			<ul class="list-unstyled components">
+				<p>Browse</p>
+				<li>
+					<a href="/applicant/dashboard">Dashboard</a>
+				</li>
+				<li>
+					<a href="/infographics">Infographics</a>
+				</li>
+				{% block nav %}{% endblock%}
+			</ul>
+		</nav>
+
+		<!-- Page Content Holder -->
+		<div id="content">
+
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+
+					<div class="navbar-header">
+						<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+							<i class="glyphicon glyphicon-align-left"></i>
+							<span>Open Sidebar</span>
+						</button>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#">About</a>
+							</li>
+							<li>
+								<a href="/applicantlogout">
+									<span class="glyphicon glyphicon-log-out"></span> <span style="color: red;">Logout</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="container">
+				<h1>Jobs</h1>
+				<p>Find all available jobs down below.</p>
+				<br>
+
+				<div class="row">
+					<div class="col-sm-4" style="">
+						<a href="/applicant/jobs/Cooks">
+						<img class="img-responsive center-block" id="cooks-picture" src="{{ url_for('static',filename='img/cook.svg') }}" style="max-width: 150px; max-height: 150px;">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Cooks</p>
+						<p style="text-align: center;">{{ cooks }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Sales">
+						<img class="img-responsive center-block" id="sales-picture" src="{{ url_for('static',filename='img/sales.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Sales</p>
+						<p style="text-align: center;">{{ sales }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Deliveryman">
+						<img class="img-responsive center-block" id="delivery-picture" src="{{ url_for('static',filename='img/deliveryman.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Deliveryman</p>
+						<p style="text-align: center;">{{ deliveryman }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Driver">
+						<img class="img-responsive center-block" id="driver-picture" src="{{ url_for('static',filename='img/driver.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Drivers</p>
+						<p style="text-align: center;">{{ drivers }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Tailoring">
+						<img class="img-responsive center-block" id="tailoring-picture" src="{{ url_for('static',filename='img/tailoring.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Tailoring</p>
+						<p style="text-align: center;">{{ tailoring }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Accounting">
+						<img class="img-responsive center-block" id="accounting-picture" src="{{ url_for('static',filename='img/accounting.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Accounting</p>
+						<p style="text-align: center;">{{ accounting }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Construction">
+						<img class="img-responsive center-block" id="construction-picture" src="{{ url_for('static',filename='img/construction.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Construction</p>
+						<p style="text-align: center;">{{ construction }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Mining">
+						<img class="img-responsive center-block" id="mining-picture" src="{{ url_for('static',filename='img/mining.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Mining</p>
+						<p style="text-align: center;">{{ mining }} Available</p>
+					</div>
+					<div class="col-sm-4">
+						<a href="/applicant/jobs/Attendant">
+						<img class="img-responsive center-block" id="attendant-picture" src="{{ url_for('static',filename='img/attendant.svg') }}" style="max-width: 150px; max-height: 150px">
+						</a>
+						<br>
+						<p style="text-align: center; font-weight: bold;">Attendant</p>
+						<p style="text-align: center;">{{ attendant }} Available</p>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="overlay"></div>
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#sidebar").mCustomScrollbar({
+			theme: "minimal"
+		});
+
+		$('#dismiss, .overlay').on('click', function () {
+			$('#sidebar').removeClass('active');
+			$('.overlay').fadeOut();
+		});
+
+		$('#sidebarCollapse').on('click', function () {
+			$('#sidebar').addClass('active');
+			$('.overlay').fadeIn();
+			$('.collapse.in').toggleClass('in');
+			$('a[aria-expanded=true]').attr('aria-expanded', 'false');
+		});
+	});
+</script>
+
+
+</body>
+</html>
