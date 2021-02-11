@@ -42,14 +42,14 @@
 	{% else %}
 	<br>
 	<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">You have applied for {{ applications|length }} jobs.</div>
-	{% for job in jobsapplied %}
+	{% for application in applications %}
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="row">
 
-				<h2>{{ job.post }}
-					<button  class="btn btn-success" value="1" style="float: right;"><img src="{{ url_for('static',filename='img/timedelay.svg') }}" style="max-height: 16px; max-width: 16px;"> Under Consideration</button>
-					{% if job.restart == 'No' %}	
+				<h2>{{ jobs[(application.job_id)-1].post }}
+					<button  class="btn btn-success" value="1" style="float: right;"><img src="{{ url_for('static',filename='img/timedelay.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ application.status }}</button>
+					{% if jobs[(application.job_id)-1].restart == 'No' %}	
 					<button type="button" class="btn btn-dark" style="float: right; margin-right: 5px;">Exclusively for Women</button>
 					{% else %}
 					{% endif %}
@@ -58,29 +58,29 @@
 			<br>
 			<div class="row">
 				<div class="col-sm-3">
-					<img src="{{ url_for('static',filename='img/organization.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.organization }}
+					<img src="{{ url_for('static',filename='img/organization.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].organization }}
 					<br>
 					<p>Organization</p>
 				</div>
 				<div class="col-sm-3">
-					<img src="{{ url_for('static',filename='img/location.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.location }}
+					<img src="{{ url_for('static',filename='img/location.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].location }}
 					<br>
 					<p>Location</p>
 				</div>
 				<div class="col-sm-3" style="display: inline-block;">
-					<img src="{{ url_for('static',filename='img/rupee-indian.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.salary }}
+					<img src="{{ url_for('static',filename='img/rupee-indian.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].salary }}
 					<br>
 					<p>Salary</p>
 				</div>
 				<div class="col-sm-3">
-					<img src="{{ url_for('static',filename='img/home.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ job.wfh }}
+					<img src="{{ url_for('static',filename='img/home.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].wfh }}
 					<br>
 					<p>Work From Home?</p>
 				</div>
 			</div>
 			<br>
 			<div class="row">
-				<p>{{ job.description }}</p>
+				<p>{{ jobs[(application.job_id)-1].description }}</p>
 			</div>
 		</div>
 	</div>

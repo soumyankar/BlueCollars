@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+
 {% endblock %}
 {% block logout %}
 <li>
@@ -26,7 +27,7 @@
 <div class="line"></div>
 <br>
 <div class="row">
-	<h2>Applied Jobs</h2>
+	<h2>Pending applications</h2>
 	{% if applications|length < 1 %}
 	<p>No job applications yet:(</p>
 	{% else %}
@@ -45,7 +46,19 @@
 			<div class="row">
 
 				<h2>{{ jobs[(application.job_id)-1].post }}
-					<button  class="btn btn-success" value="1" style="float: right;"><img src="{{ url_for('static',filename='img/timedelay.svg') }}" style="max-height: 16px; max-width: 16px;"> Under Consideration</button>
+					<!-- Example single danger button -->
+					<div class="btn-group" style="float: right;">
+						<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							{{ application.status }}
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/admin/applications/statuschange/{{application.id}}/Under Consideration">Under Consideration</a>
+							<br>
+							<a class="dropdown-item" href="/admin/applications/statuschange/{{application.id}}/Short-listed">Short-listed</a>
+							<br>
+							<a class="dropdown-item" href="/admin/applications/statuschange/{{application.id}}/Accepted">Accepted</a>
+						</div>
+					</div>
 					{% if jobs[(application.job_id)-1].restart == 'No' %}	
 					<button type="button" class="btn btn-dark" style="float: right; margin-right: 5px;">Exclusively for Women</button>
 					{% else %}

@@ -61,6 +61,7 @@ class Applications(db.Model):
 	id=db.Column(db.Integer, primary_key=True)
 	applicant_id=db.Column(db.Integer, nullable=False)
 	job_id=db.Column(db.Integer, nullable=False)
+	status=db.Column(db.String(200))
 
 class Admin(UserMixin, db.Model):
 	id=db.Column(db.Integer, primary_key=True)
@@ -97,7 +98,16 @@ def index():
 
 @app.route('/infographics', methods=['POST','GET'])
 def infographics():
-	return render_template('infographics.html')
+	cooks = Jobs.query.filter_by(category='Cooks').count()
+	sales = Jobs.query.filter_by(category='Sales').count()
+	deliveryman = Jobs.query.filter_by(category='Deliverman').count()
+	drivers = Jobs.query.filter_by(category='Drivers').count()
+	tailoring = Jobs.query.filter_by(category='Tailoring').count()
+	accounting = Jobs.query.filter_by(category='Accounting').count()
+	construction = Jobs.query.filter_by(category='Construction').count()
+	mining = Jobs.query.filter_by(category='Mining').count()
+	attendant = Jobs.query.filter_by(category='Attendant').count()
+	return render_template('infographics.html',cooks = cooks, sales = sales, deliveryman = deliveryman, drivers = drivers, tailoring= tailoring, accounting=accounting, construction=construction,mining=mining,attendant=attendant)
 
 @app.route('/jobfinding', methods=['POST','GET'])
 def jobfinding():
@@ -203,7 +213,8 @@ def applicantdashboard():
 	applications = Applications.query.filter_by(applicant_id=applicant.id).all()
 	for x in applications:
 		jobsapplied.append(Jobs.query.get(x.job_id))
-	return render_template('applicant_dashboard.html',applicant=applicant,applications = applications, jobsapplied = jobsapplied)
+	jobs = Jobs.query.all()
+	return render_template('applicant_dashboard.html',applicant=applicant,applications = applications, jobs=jobs)
 
 @app.route('/admin/dashboard', methods=['GET','POST'])
 @login_required
@@ -218,9 +229,19 @@ def applications():
 	applications = Applications.query.all()
 	jobs = Jobs.query.all()
 	applicants = Applicants.query.all()
-	print (jobs)
-	print (applicants)
 	return render_template('applications.html', applicants = applicants, jobs = jobs, applications = applications)
+
+@app.route('/admin/applications/statuschange/<int:id>/<string:status>', methods=['GET','POST'])
+@login_required
+def statuschange(id,status):
+	applications = Applications.query.get(id)
+	applications.status=status
+	print (applications)
+	try:
+		db.session.commit()
+	except:
+		return 'Unable to change status'
+	return redirect(url_for('applications'))
 
 @app.route('/admin/addjob',methods=['GET','POST'])
 @login_required
@@ -258,18 +279,20 @@ def jobsforwomen():
 @app.route('/applicant/jobs/apply/<int:id>', methods=['POST','GET'])
 @login_required
 def job_apply(id):
+	apply_success=False
 	applicant_id = current_user.id
 	job_id = id
 	Job = Jobs.query.get(id)
-	new_application = Applications(job_id = job_id, applicant_id = applicant_id)
-	print(applicant_id)
-	print(job_id)
+	status = 'Under Consideration'
+	new_application = Applications(job_id = job_id, applicant_id = applicant_id, status = status)
+	jobs = Jobs.query.filter_by(category=Job.category).all()
 	try:
+		apply_success= True
 		db.session.add(new_application)
 		db.session.commit()
 	except:
 		return 'Couldnt upload the application.'
-	return redirect(url_for('applicantdashboard'))
+	return render_template('browse_jobs.html',category = Job.category, jobs=jobs,apply_success= apply_success)
 
 
 @app.route('/applicant/edit/<int:id>', methods=['POST','GET'])

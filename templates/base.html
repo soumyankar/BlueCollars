@@ -7,11 +7,21 @@
 
     <title>Job Finder | Heroku Hosting</title>
     <!-- My Scripts. -->
+    <!-- Development version -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- JQuery min CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Styling Components -->
+    <!-- Popper CDN -->
     <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
     <!-- Scrollbar Custom CSS -->
@@ -32,7 +42,6 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>Browse</p>
                 <li>
                     <a href="/">Home</a>
                 </li>
@@ -49,7 +58,7 @@
                     <a href="/jobs">Find Jobs</a>
                 </li>
                 <li>
-                    <a href="/jobsforwomen">Jobs for Women</a>
+                    <a href="/jobsforwomen">Women Portal</a>
                 </li>
                 <li>
                     <a href="/admin">Administrator</a>
