@@ -6,8 +6,11 @@
 
 {% block container %}
 <h1>Applicant Registration</h1>
+{% if registration_success %}
+<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Applicant registered, please move onto the <b><u><a href="/applicantlogin">Login Page</a></u></b></div>
+{% else %}
 <p>Please fill in your application form here. We promise to get back to you as soon as we can.</p>
-<form name="inputform" method="POST" action="/registration" onsubmit="return (validate())">
+<form name="inputform" method="POST" action="/registration" onsubmit="return (validate())" enctype = "multipart/form-data">
 	<label>Name </label>
 	<br>
 	<input type="text" name="name">
@@ -27,6 +30,27 @@
 		<option value="Male">Male</option>
 	</select>
 	<br><br>
+	<label>Qualification -- </label>
+	<select name="qualification">
+		<option value="-1" selected disabled hidden></option>
+		<option value="Matriculate">Matriculate</option>
+		<option value="Higher Secondary">Higher Secondary</option>
+		<option value="Undergraduate">Undergraduate</option>
+		<option value="Postgraduate">Postgraduate</option>
+	</select>
+	<br><br>
+	<label>Age </label>
+	<br>
+	<input type="number" name="age">
+	<br><br>
+	<label>Profile Picture</label>
+	<br>
+	<input type = "file" name = "display">
+	<br>
+	<label>Resume</label>
+	<br>
+	<input type = "file" name = "resume">
+	<br>
 	<label>Username </label>
 	<br>
 	<input type="text" name="username">
@@ -37,4 +61,5 @@
 	<br><br>
 	<input type="submit" name="submit" value="Go!" onclick="return (validate());">
 </form>
+{% endif %}
 {% endblock%}

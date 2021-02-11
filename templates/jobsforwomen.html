@@ -13,7 +13,7 @@
 
 {% block container %}
 <h1>Find Jobs </h1>
-<p>Displaying all jobs under the <b><u>{{ category }}</u></b> Category.</p>
+<p>Displaying all jobs exclusively for women.</p>
 <div class="line"></div>
 {% if jobs|length < 1 %}
 <p>No jobs currently available in this category :(</p>
@@ -25,7 +25,7 @@
 			
 			<h2>{{ job.post }}
 			<a href="/applicant/jobs/apply/{{job.id}}"><button  class="btn btn-success" value="1" style="float: right;">Apply!</button></a>
-			{% if job.restart == 'No' %}	
+			{% if job.restart == 'Yes' %}	
 			<button type="button" class="btn btn-dark" style="float: right; margin-right: 5px;">Exclusively for Women</button>
 			{% else %}
 			{% endif %}
@@ -62,4 +62,53 @@
 </div>
 {% endfor %}
 {% endif %}
+
+<div class="line"></div>
+<div class="row">
+	<h2>News</h2>
+	<p>Please find below all jobs from governmental organizations that are exclusively made for women. </p>
+	<ul>
+		<li>
+			<a href="#">Indian Railway Jobs</a>
+		</li>
+		<li>
+			<a href="#">Indian PWD Jobs</a>
+		</li>
+		<li>
+			<a href="#">Indian Army Jobs</a>
+		</li>
+		<li>
+			<a href="#">Indian Healthcare Jobs</a>
+		</li>
+		<li>
+			<a href="#">Indian Child Welfare Jobs</a>
+		</li>
+		<li>
+			<a href="#">Indianoil Jobs</a>
+		</li>
+		<li>
+			<a href="#">Indian Police Jobs</a>
+		</li>
+	</ul>
+</div>
+
+<div class="row">
+	<h2>Blog</h2>
+	<p>To empower women and allow them to be independent we have procured certain articles to help women become financially independent. Please read further to understand our method of approach.</p>
+	<ul>
+		<li>
+			<a href="#">Investing in Gold</a>
+		</li>
+		<li>
+			<a href="#">Investing in Stocks</a>
+		</li>
+		<li>
+			<a href="#">Cutting down on every-day expenses</a>
+		</li>
+		<li>
+			<a href="#">Read further.</a>
+		</li>
+		</li>
+	</ul>
+</div>
 {% endblock%}

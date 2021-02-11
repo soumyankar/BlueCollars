@@ -14,6 +14,9 @@
     <a href="/admin/dashboard">Dashboard</a>
 </li>
 <li>
+    <a href="/admin/applications">Applications</a>
+</li>
+<li>
     <a href="/admin/addjob">Add Jobs</a>
 </li>
 {% endblock %}
@@ -23,7 +26,7 @@
 <div class="line"></div>
 <h2>Applicants</h2>
 <br>
-<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Currently displaying {{ applicants_count }} applications.</div>
+<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Currently displaying {{ applicants_count }} applicants.</div>
 <br>
 {% if applicants|length < 1 %}
 <p>No applicants in database :(</p>
@@ -33,7 +36,7 @@
 <br>
 <div class="row">
 	<div class="col-sm-4">
-		<a href="#"><img id="applicant-picture" src="{{ url_for('static',filename='img/user.svg') }}" style="max-width: 150px; max-height: 150px"></a>
+		<a href="#"><img id="applicant-picture" src="{{ url_for('static', filename='uploads/displaypictures/'+applicant.username+'.jpg') }}" onerror="this.src='/static/img/user.svg'" style="max-width: 150px; max-height: 150px"></a>
 	</div>
 	<div class="col-sm-8">
 		<p id="applicant-id"><b>ID </b>- {{ applicant.id }}</p>
@@ -41,9 +44,10 @@
 		<p id="applicant-address"><b>Address </b>- {{ applicant.address }}</p>
 		<p id="applicant-phone"><b>Phone Number </b>- {{ applicant.phone }}</p>
 		<p id="applicant-gender"><b>Gender </b>- {{ applicant.gender }}</p>
+		<p id="applicant-qualification"><b>Qualification </b>- {{ applicant.qualification }}</p>
+		<p id="applicant-age"><b>Age </b>- {{ applicant.age }}</p>
 		<p id="applicant-date-created"><b>Date Created </b>- {{ applicant.date_created }}</p>
-		<button type="button" class="btn btn-danger" value="Delete!"><a href="#">Delete</a></button>
-		<button type="button" class="btn btn-success" value="Accept!"><a href="#">Accept</a></button>
+		<a href="/download/{{applicant.username}}.pdf"><button type="button" class="btn btn-warning">Download Resume</button></a>
 	</div>
 </div>
 <br>

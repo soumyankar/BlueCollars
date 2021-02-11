@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block logout %}
+<li>
+	<a href="/logout">
+		<span class="glyphicon glyphicon-log-out"></span> <span style="color: red;">Logout</span>
+	</a>
+</li>
+{% endblock %}
+{% block nav%}
+<li>
+	<a href="/admin/dashboard">Dashboard</a>
+</li>
+<li>
+	<a href="/admin/applications">Applications</a>
+</li>
+<li>
+	<a href="/admin/addjob">Add Jobs</a>
+</li>
+{% endblock %}
+{% block container %}
+<h1>Applications</h1>
+<p>Displaying all pending job applications.</p>
+<div class="line"></div>
+<br>
+<div class="row">
+	<h2>Applied Jobs</h2>
+	{% if applications|length < 1 %}
+	<p>No job applications yet:(</p>
+	{% else %}
+	<br>
+	<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">You have {{ applications|length }} pending job applications.</div>
+	{% for application in applications %}
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="col-sm-4">
+				<a href="#"><img class="img-responsive center-block" id="applicant-picture" src="{{ url_for('static', filename='uploads/displaypictures/'+applicants[(application.applicant_id)-1].username+'.jpg') }}" onerror="this.src='/static/img/user.svg'" style="max-width: 150px; max-height: 150px"></a>
+				<p>{{ applicants[(application.applicant_id)-1].name }}</p>
+				<p>{{ applicants[(application.applicant_id)-1].qualification }}</p>
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="row">
+
+				<h2>{{ jobs[(application.job_id)-1].post }}
+					<button  class="btn btn-success" value="1" style="float: right;"><img src="{{ url_for('static',filename='img/timedelay.svg') }}" style="max-height: 16px; max-width: 16px;"> Under Consideration</button>
+					{% if jobs[(application.job_id)-1].restart == 'No' %}	
+					<button type="button" class="btn btn-dark" style="float: right; margin-right: 5px;">Exclusively for Women</button>
+					{% else %}
+					{% endif %}
+				</h2>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-3">
+					<img src="{{ url_for('static',filename='img/organization.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].organization }}
+					<br>
+					<p>Organization</p>
+				</div>
+				<div class="col-sm-3">
+					<img src="{{ url_for('static',filename='img/location.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].location }}
+					<br>
+					<p>Location</p>
+				</div>
+				<div class="col-sm-3" style="display: inline-block;">
+					<img src="{{ url_for('static',filename='img/rupee-indian.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].salary }}
+					<br>
+					<p>Salary</p>
+				</div>
+				<div class="col-sm-3">
+					<img src="{{ url_for('static',filename='img/home.svg') }}" style="max-height: 16px; max-width: 16px;"> {{ jobs[(application.job_id)-1].wfh }}
+					<br>
+					<p>Work From Home?</p>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<p>{{ jobs[(application.job_id)-1].description }}</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% endif %}
+</div>
+
+<br>
+<br>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+{% block logout %}
+<li>
+	<a href="/applicantlogout">
+		<span class="glyphicon glyphicon-log-out"></span> <span style="color: red;">Logout</span>
+	</a>
+</li>
+{% endblock %}
+{% block nav%}
+<li>
+	<a href="/applicant/dashboard">Dashboard</a>
+</li>
+{% endblock %}
+{% block container %}
+<h1>Edit Profile</h1>
+<p>Applicant info</p>
+<div class="line"></div>
+{% if registration_success %}
+<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Profile updated. If image doesn't refresh try force reloading your browser ( Ctrl + Shift + R ).</div>
+<br>
+{% else %}
+{% endif %}
+<div class="row">
+	<div class="col-sm-4">
+		<a href="#"><img class="img-responsive center-block" id="applicant-picture" src="{{ url_for('static', filename='uploads/displaypictures/'+applicant.username+'.jpg') }}" onerror="this.src='/static/img/user.svg'" style="max-width: 150px; max-height: 150px"></a>
+	</div>
+	<div class="col-sm-8">
+		<form name="inputform" method="POST" action="/applicant/edit/{{ applicant.id }}" onsubmit="return (validate())" enctype = "multipart/form-data">
+			<label>Name </label>
+			<br>
+			<input type="text" name="name" value="{{ applicant.name }}">
+			<br><br>
+			<label>Address </label>
+			<br>
+			<input type="text" name="address" value="{{ applicant.address }}">
+			<br><br>
+			<label>Phone </label>
+			<br>
+			<input type="number" name="phone" value="{{ applicant.phone }}">
+			<br><br>
+			<label>Gender -- </label>
+			<select name="gender">
+				<option value="{{ applicant.gender }}" selected>{{ applicant.gender }}</option>
+				<option value="Female">Female</option>
+				<option value="Male">Male</option>
+			</select>
+			<br><br>
+			<label>Qualification -- </label>
+			<select name="qualification">
+				<option value="{{ applicant.qualification }}" selected>{{ applicant.qualification }}</option>
+				<option value="Matriculate">Matriculate</option>
+				<option value="Higher Secondary">Higher Secondary</option>
+				<option value="Undergraduate">Undergraduate</option>
+				<option value="Postgraduate">Postgraduate</option>
+			</select>
+			<br><br>
+			<label>Age </label>
+			<br>
+			<input type="number" name="age" value="{{ applicant.age }}">
+			<br><br>
+			<label>Profile Picture</label>
+			<br>
+			<input type = "file" name = "display">
+			<br>
+			<label>Resume</label>
+			<br>
+			<input type = "file" name = "resume">
+			<br>
+			<input type="submit" name="submit" value="Go!" onclick="return (validate());">
+		</form>
+	</div>
+</div>
+{% endblock %}

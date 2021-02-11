@@ -5,16 +5,19 @@
 
 {% block nav%}
 <li>
-    <a href="/admin/dashboard">Dashboard</a>
+	<a href="/admin/dashboard">Dashboard</a>
 </li>
 <li>
-    <a href="/admin/addjob">Add Jobs</a>
+	<a href="/admin/addjob">Add Jobs</a>
 </li>
 {% endblock %}
 
 {% block container %}
 <h1>Add Jobs </h1>
 <p>Add Jobs here for applicants to apply to. All jobs added here will be reflected on the applicant job search page.</p>
+<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">{{totaljobs}} jobs currently present in the database.</div>
+<div class="line"></div>
+<br>
 <form method="POST" action="/admin/addjob" onsubmit="return (validate())">
 	<label>Job Post</label>
 	<br>
@@ -35,6 +38,7 @@
 	<label>Location</label>
 	<br>
 	<input type="text" name="location">
+	<br><br>
 	<label>Job Category -- </label>
 	<select name="category">
 		<option value="-1" selected disabled hidden></option>
@@ -48,6 +52,21 @@
 		<option value="Mining">Mining</option>
 		<option value="Attendant">Attendant</option>
 	</select>
+	<br><br>
+	<label>Work Location</label>
+	<br>
+	<input type="radio" id="wfh" name="wfh" value="Work from Home">
+	<label for="wfh">Work from Home</label>
+	<input type="radio" id="onsite" name="wfh" value="On-site">
+	<label for="onsite">On-site</label>
+	<br><br>
+	<label>Restarting Career as a woman?</label>
+	<br>
+	<input type="checkbox" id="restart" name="CareerRestart" value="Yes">
+	<label for="restart">Yes</label>
+	<br>
+	<input type="checkbox" id="restart" name="CareerRestart" value="No" checked>
+	<label for="restart">No</label><br>
 	<br><br>
 	<input type="submit" name="submit" value="Go!" onclick="return (validate());">
 </form>
