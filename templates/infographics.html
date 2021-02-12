@@ -6,74 +6,49 @@
 
 {% block container %}
 <h1>Infographics </h1>
-<p>Job openings from the different categories represented as a histogram.</p>
-<canvas id="myChart" width="200" height="200"></canvas>
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Cooks', 'Sales', 'Deliveryman', 'Drivers', 'Tailoring', 'Accounting', 'Construction', 'Mining', 'Attendant'],
-        datasets: [{
-            label: '# of Job Openings',
-            data: [{{cooks}}, {{sales}}, {{deliveryman}}, {{drivers}}, {{tailoring}}, {{accounting}}, {{construction}}, {{mining}}, {{attendant}}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-    	legend: {
-            display: true
-        },
-        responsive: true,
-		maintainAspectRatio: false,
-        title: {
-            display: true,
-            text: 'Job Openings'
-        },
-        scales: {
-        	xAxes: [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Categories'
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    max: 20,
-              	    min: 0,
-                	stepSize: 2
-                },
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Job Openings'
-                }
-            }]
-        }
-    }
-});
-</script>
+<p>Graphical respresentation of data across various factors.</p>
+<div class="row">
+    <div class="col-sm-6">
+        <img class="img-responsive center-block" id="graph-picture" src="{{ url_for('static', filename='img/infographic1.jpeg') }}" style="max-width: 350px; max-height: 350px">
+        <br>
+        <p class="text-center">Blue Collar Jobs State-Wise</p>
+    </div>
+
+    <div class="col-sm-6">
+        <img class="img-responsive center-block" id="graph-picture" src="{{ url_for('static', filename='img/infographic2.jpeg') }}" style="max-width: 350px; max-height: 350px">
+        <br>
+        <p class="text-center">Migratory Population</p>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-6">
+        <img class="img-responsive center-block" id="graph-picture" src="{{ url_for('static', filename='img/infographic3.jpeg') }}" style="max-width: 350px; max-height: 350px">
+        <br>
+        <p class="text-center">Skilled Blue Collar Jobs Pay Chart</p>
+    </div>
+
+    <div class="col-sm-6">
+        <img class="img-responsive center-block" id="graph-picture" src="{{ url_for('static', filename='img/infographic4.jpeg') }}" style="max-width: 350px; max-height: 350px">
+        <br>
+        <p class="text-center">Wage Inflation over the years.</p>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-6">
+        <img class="img-responsive center-block" id="graph-picture" src="{{ url_for('static', filename='img/infographic5.jpeg') }}" style="max-width: 350px; max-height: 350px">
+        <br>
+        <p class="text-center">Loss of Jobs</p>
+    </div>
+
+    <div class="col-sm-6">
+        <img class="img-responsive center-block" id="graph-picture" src="{{ url_for('static', filename='img/infographic6.jpeg') }}" style="max-width: 350px; max-height: 350px">
+        <br>
+        <p class="text-center"> Salary division by jobs.</p>
+    </div>
+</div>
+<br>
+
+
 {% endblock%}
