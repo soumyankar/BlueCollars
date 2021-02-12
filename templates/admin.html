@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block container %}
+<h1>Administrator Login</h1>
+<p>Please login with your administrator credentials</p>
+<div class="line"></div>
+<p>To register a new administrator account, please <u><b><a href="/adminregistration">click here</a></b></u>.</p>
 <form class="form-signin" method="POST" action="/admin">
 	{{ form.hidden_tag() }}
 	<!-- <div class="form-label-group"> -->

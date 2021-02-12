@@ -131,6 +131,23 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@app.route('/adminregistration', methods=['POST','GET'])
+def adminregistration():
+	registration_success = False
+	if request.method == 'POST':
+		admin_username=request.form['username']
+		admin_email=request.form['email']
+		admin_password=request.form['password']
+		new_admin = Admin(username=admin_username, email=admin_email, password=admin_password)
+		try:
+			db.session.add(new_admin)
+			db.session.commit()
+			registration_success = True
+			return render_template('adminregistration.html', registration_success=registration_success)
+		except:
+			return 'There was some error uploading the application.'
+	return render_template('adminregistration.html', registration_success=registration_success)
+
 @app.route('/registration', methods=['POST','GET'])
 def registration():
 	registration_success = False
@@ -175,11 +192,13 @@ def admin():
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = Admin.query.filter_by(username=form.username.data).first()
+		admin = Admin.query.get(1)
 		print (user)
 		if user:
 			if user.password == form.password.data:
-				login_user(user,remember=False)
-				return redirect(url_for('dashboard'))
+				print('Loggin in..')
+				login_user(admin,remember=False)
+				return redirect('/admin/dashboard')
 			else:
 				return '<h1>Wrong Password</h1>'
 		else:
@@ -219,6 +238,7 @@ def applicantdashboard():
 @app.route('/admin/dashboard', methods=['GET','POST'])
 @login_required
 def dashboard():
+	print ('hello')
 	applicants_count = Applicants.query.count()
 	applicants = Applicants.query.order_by(Applicants.id.asc()).all()
 	return render_template('admin_dashboard.html',applicants=applicants, applicants_count=applicants_count)

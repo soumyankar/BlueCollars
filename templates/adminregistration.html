@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script type="text/javascript" src="{{ url_for('static',filename='js/FormValidation.js') }}"></script>
+{% endblock %}
+
+{% block container %}
+<h1>Applicant Registration</h1>
+{% if registration_success %}
+<div id="ApplicantInfo" class="row alert alert-info text-info" role="info">Admin registered, please move onto the <b><u><a href="/admin">Admin Login Page</a></u></b>.</div>
+{% else %}
+<p>Please fill in your application form here. We promise to get back to you as soon as we can.</p>
+<form name="inputform" method="POST" action="/adminregistration" onsubmit="return (validate())">
+	<label>Username </label>
+	<br>
+	<input type="text" name="username">
+	<br><br>
+	<label>Email Address</label>
+	<br>
+	<input type="email" name="email">
+	<br><br>
+	<label>Password</label>
+	<br>
+	<input type="password" name="password">
+	<br><br>
+	<input type="submit" name="submit" value="Go!" onclick="return (validate());">
+</form>
+{% endif %}
+{% endblock%}
